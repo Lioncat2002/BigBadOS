@@ -10,7 +10,7 @@
 
 /* INCLUDES */
 
-#include "machine/keyctrl.h"
+#include "keyctrl.h"
  
 /* STATIC MEMBERS */
 
@@ -231,10 +231,20 @@ Keyboard_Controller::Keyboard_Controller() : ctrl_port(0x64), data_port(0x60)
 Key Keyboard_Controller::key_hit()
 {
 	Key invalid; // not explicitly initialized Key objects are invalid
-/* Add your code here */ 
-/* Add your code here */ 
- 
-/* Add your code here */ 
+
+	int status = ctrl_port.inb();
+
+	if(!(status&outb))
+		return invalid;
+
+	if(status&auxb)
+		return invalid;
+
+	code = data_port.inb();
+
+	if(key_decoded())
+		return gather;
+
 	return invalid;
 }
 
@@ -284,3 +294,5 @@ void Keyboard_Controller::set_led(char led, bool on)
 /* Add your code here */ 
  
 }
+
+Keyboard_Controller keyboard;

@@ -14,16 +14,21 @@
 #ifndef __cgastr_include__
 #define __cgastr_include__
 
-#include "object/o_stream.h"
-#include "machine/cgascr.h"
+#include "../object/o_stream.h"
+#include "../machine/cgascr.h"
 
-class CGA_Stream
+class CGA_Stream: public O_Stream
 /* Add your code here */ 
 {
+private:
+	CGA_Screen screen;
 public:
+	CGA_Stream() = default;
 	CGA_Stream(CGA_Stream &copy) = delete; // prevent copying
 	CGA_Stream& operator=(const CGA_Stream&) = delete; // prevent assignment
-/* Add your code here */ 
+	void flush() override;
 };
+
+extern CGA_Stream kout;
 
 #endif

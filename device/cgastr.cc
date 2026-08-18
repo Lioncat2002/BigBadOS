@@ -11,6 +11,11 @@
 /* CGA_Screen.                                                               */
 /*****************************************************************************/
 
-#include "device/cgastr.h"
+#include "../device/cgastr.h"
 
-/* Add your code here */ 
+void CGA_Stream::flush(){
+    screen.print(buffer, pos, 0x07);
+    pos = 0;
+}
+
+CGA_Stream kout;

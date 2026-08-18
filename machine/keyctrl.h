@@ -11,8 +11,8 @@
 #ifndef __Keyboard_Controller_include__
 #define __Keyboard_Controller_include__
 
-#include "machine/io_port.h"
-#include "machine/key.h"
+#include "io_port.h"
+#include "key.h"
 
 class Keyboard_Controller {
 public:
@@ -97,5 +97,7 @@ public:
 	// SET_LED: sets or clears the specified LED
 	void set_led(char led, bool on);
 };
+
+extern Keyboard_Controller keyboard;
 
 #endif

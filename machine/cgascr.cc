@@ -10,6 +10,77 @@
 /* I/O ports.                                                                */
 /*****************************************************************************/
 
-#include "machine/cgascr.h"
+#include "cgascr.h"
 
-/* Add your code here */ 
+void CGA_Screen::show(int x, int y, char c, unsigned char attrib){
+  int pos = (y * 80 + x) * 2;
+  video[pos] = c;
+  video[pos + 1] = attrib;
+}
+
+
+void CGA_Screen::setpos(int x, int y) {
+  this->x = x;
+  this->y = y;
+
+  int pos = y * 80 + x;
+
+  // Set low byte
+  index_port.outb(15);
+  data_port.outb(pos & 0xff);
+
+  // Set high byte
+  index_port.outb(14);
+  data_port.outb((pos >> 8) & 0xff);
+}
+
+void CGA_Screen::getpos(int &x, int &y) {
+  x = this->x;
+  y = this->y;
+}
+
+void CGA_Screen::print(char *text, int length, unsigned char attrib) {
+
+  for (int i = 0; i < length; i++) {
+    char c = text[i];
+
+    if (c == '\n') {
+      x = 0;
+      y++;
+    } else if (c == '\r') {
+      x = 0; // Support for CRLF line endings
+    } else {
+      show(x, y, text[i], attrib);
+      x++;
+    }
+    if (x >= width) {
+      x = 0;
+      y++;
+    }
+
+    if (y >= height) {
+      scroll();
+      y = height - 1;
+    }
+  }
+  setpos(x, y);
+}
+
+void CGA_Screen::scroll(){
+  int row = width * 2;
+
+  for(int y=1;y<height;y++){
+    for(int x=0;x<row;x++){
+      video[(y-1)*row+x] = video[y*row+x];
+    }
+  }
+
+  int last_row = (height-1)*row;
+
+  for(int x = 0;x<width;x++){
+    video[last_row+x*2]=' ';
+    video[last_row+x*2+1]=0x07;
+  }
+}
+
+CGA_Screen screen;

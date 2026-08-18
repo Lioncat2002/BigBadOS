@@ -13,6 +13,11 @@
 /* (pure) virtual method that must be defined by derived classes.            */
 /*****************************************************************************/
 
-#include "object/strbuf.h"
+#include "strbuf.h"
 
-/* Add your code here */ 
+void Stringbuffer::put(char c){
+    buffer[pos++]=c;
+    if(pos>=SIZE-1){
+        flush();
+    }
+}
