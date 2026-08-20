@@ -295,4 +295,4 @@ void Keyboard_Controller::set_led(char led, bool on)
  
 }
 
-Keyboard_Controller keyboard;
+Keyboard_Controller keyboard_controller;

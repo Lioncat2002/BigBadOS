@@ -10,3 +10,16 @@
 /*****************************************************************************/
 
 /* Add your code here */ 
+#include "plugbox.h"
+
+void Plugbox::assign(unsigned int slot, Gate &gate){
+    if(slot<64){
+        slots[slot] = &gate;
+    }
+}
+
+Gate& Plugbox::report(unsigned int slot){
+    return *slots[slot];
+}
+
+Plugbox plugbox;

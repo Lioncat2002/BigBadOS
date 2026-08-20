@@ -18,6 +18,8 @@ class Application
 public:
 	Application (const Application &copy) = delete; // prevent copying
 	Application& operator=(const Application&) = delete; // prevent assignment
+
+	Application(){}
 /* Add your code here */ 
  
 	void action ();

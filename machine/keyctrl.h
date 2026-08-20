@@ -98,6 +98,6 @@ public:
 	void set_led(char led, bool on);
 };
 
-extern Keyboard_Controller keyboard;
+extern Keyboard_Controller keyboard_controller;
 
 #endif

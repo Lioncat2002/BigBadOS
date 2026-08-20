@@ -10,9 +10,8 @@
 /*****************************************************************************/
 
 /* INCLUDES */
-
+#include "../machine/plugbox.h"
 /* FUNCTIONS */
-
 extern "C" void guardian (unsigned int slot);
 
 /* GUARDIAN: Low-level interrupt handling. We will extend this function at */
@@ -20,5 +19,5 @@ extern "C" void guardian (unsigned int slot);
 
 void guardian (unsigned int slot)
 {
- 
+    plugbox.report(slot).trigger();
 }

@@ -16,12 +16,22 @@
 #ifndef __pic_include__
 #define __pic_include__
 
+#include "io_port.h"
 class PIC {
 public:
+	enum { timer = 0, keyboard = 1 };
 	PIC(const PIC &copy) = delete; // prevent copying
 	PIC& operator=(const PIC&) = delete; // prevent assignment
-	PIC() {}
-/* Add your code here */ 
+	PIC(): master_mask(0x21), slave_mask(0xa1) {}
+
+	void allow(int interrupt_device);
+	void forbid(int interrupt_device);
+	bool is_masked(int interrupt_device);
+private:
+	IO_Port master_mask;
+	IO_Port slave_mask;
 };
+
+extern PIC pic;
 
 #endif

@@ -1,2 +1,4 @@
-build/appl.o: user/appl.cc user/appl.h device/cgastr.h object/o_stream.h \
- object/strbuf.h machine/cgascr.h machine/io_port.h
+build/appl.o: user/appl.cc user/appl.h user/../device/cgastr.h \
+ user/../device/../object/o_stream.h user/../device/../object/strbuf.h \
+ user/../device/../machine/cgascr.h user/../device/../machine/io_port.h \
+ user/../machine/cpu.h
