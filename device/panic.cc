@@ -13,11 +13,12 @@
 #include "../machine/cpu.h"
 #include "cgastr.h"
 
-void Panic::trigger(){
+bool Panic::prologue(){
 	kout.setpos(0, 0);
 	kout << "PANIC: Unexpected interrupt! System halted." << endl;
 	kout.flush();
 	cpu.halt();	
+    return true;
 }
 
 Panic panic;

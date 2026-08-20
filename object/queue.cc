@@ -18,7 +18,7 @@
 /* when removing elements, we cannot do without this conditional.            */
 /*****************************************************************************/
 
-#include "object/queue.h"
+#include "queue.h"
 
 // ENQUEUE: Append the Chain object at the end of the list.
 

@@ -21,16 +21,25 @@ void Keyboard::plugin(){
     pic.allow(PIC::keyboard);
 }
 
-void Keyboard::trigger(){
-    Key k = key_hit();
+bool Keyboard::prologue(){
+    k = key_hit();
     if (k.valid()) {
 		if (k.ctrl() && k.alt() && k.scancode() == Key::scan::del) {
 			reboot();
-		} else if (k.ascii() != 0) {
-			kout << k.ascii();
-			kout.flush();
-		}
+		} //else if (k.ascii() != 0) {
+		//	kout << k.ascii();
+	//	kout.flush();
+	//	}
 	}
+
+    return k.valid() && k.ascii()!=0;
+}
+
+void Keyboard::epilogue(){
+    if(k.ascii()){
+        kout << k.ascii();
+        kout.flush();
+    }
 }
 
 

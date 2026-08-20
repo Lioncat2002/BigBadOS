@@ -8,18 +8,14 @@
 /* The Application class defines the (only) application for OOStuBS.         */
 /*****************************************************************************/
 
-/* INCLUDES */
-
 #include "appl.h"
 #include "../device/cgastr.h"
-#include "../machine/cpu.h"
-/* Add your code here */ 
+#include "../guard/secure.h"
 
- 
 
 void Application::action()
 {
-	kout << "PurrOS 2.0.0 - Task 2" << endl;
+	kout << "Helix OS 2.0.0 - Task 3" << endl;
 	kout << "Hello O_Stream!" << endl;
 	kout << "Number: " << 42 << endl;
 	kout << "Char test: " << 'A' << endl;
@@ -45,15 +41,16 @@ void Application::action()
 
 	int counter = 0;
 	while (true) {
-		cpu.disable_int();
-		int x, y;
-		kout.getpos(x, y);
-		kout.setpos(0, 24);
-		kout << "Counter: " << counter++ << "  ";
-		kout.flush();
-		kout.setpos(x, y);
-		cpu.enable_int();
-
+		{
+			Secure secure;
+			int x, y;
+			kout.getpos(x, y);
+			kout.setpos(0, 24);
+			kout << "Counter: " << counter++ << "  ";
+			kout.flush();
+			kout.setpos(x, y);
+		
+		}
 		for (volatile int i = 0; i < 2000000; i++)
 			;
 	}

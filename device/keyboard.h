@@ -18,6 +18,8 @@
 class Keyboard:public Gate, public Keyboard_Controller
 /* Add your code here */ 
 {
+	private:
+	Key k;
 public:
 	Keyboard(const Keyboard &copy) = delete; // prevent copying
 	Keyboard& operator=(const Keyboard&) = delete; // prevent assignment
@@ -30,8 +32,9 @@ public:
 	// PLUGIN: "Plugs in" the keyboard (driver). From now on, keypresses are handled.
 	void plugin();
 
-	void trigger() override;
-
+	//void trigger() override;
+	bool prologue() override;
+	void epilogue() override;
 /* Add your code here */ 
 
 };

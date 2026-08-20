@@ -13,12 +13,36 @@
 
 #ifndef __Locker_include__
 #define __Locker_include__
-
+#include "../device/cgastr.h"
+#include "../machine/cpu.h"
 class Locker {
+private:
+	volatile bool locked;
 public:
 	Locker(const Locker &copy) = delete; // prevent copying
 	Locker& operator=(const Locker&) = delete; // prevent assignment
-/* Add your code here */ 
+
+	Locker(): locked(false){}
+
+	void enter(){
+		if (locked){
+			kout<<"LOCK ERROR: DOUBLE enter()"<<endl;
+			cpu.halt();
+		}
+		locked = true;
+	}
+
+	void retne(){
+		if (!locked){
+			kout<<"LOCK ERROR: DOUBLE retne()"<<endl;
+			cpu.halt();
+		}
+		locked = false;
+	}
+
+	bool avail(){
+		return !locked;
+	}
 };
 
 #endif

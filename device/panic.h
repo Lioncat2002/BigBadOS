@@ -22,7 +22,8 @@ public:
 	Panic (const Panic &copy) = delete; // prevent copying
 	Panic& operator=(const Panic&) = delete; // prevent assignment
 	Panic () {}
-	void trigger() override;
+	bool prologue();
+	//void trigger() override;
 /* Add your code here */ 
  
 };

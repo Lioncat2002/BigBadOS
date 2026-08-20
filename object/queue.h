@@ -14,7 +14,7 @@
 #ifndef __queue_include__
 #define __queue_include__
 
-#include "object/chain.h"
+#include "chain.h"
 
 class Queue {
 
