@@ -28,6 +28,6 @@ void Loop::action() {
       kout.flush();
       kout.setpos(x, y);
     }
-    scheduler.schedule();
+    //scheduler.schedule();
   }
 }

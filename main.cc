@@ -19,10 +19,10 @@ int main()
 	cpu.enable_int();
 
 	scheduler.ready(app);
-	scheduler.ready(loop1);
-	scheduler.ready(loop2);
+	//scheduler.ready(loop1);
+	//scheduler.ready(loop2);
 
-	scheduler.resume();
+	scheduler.schedule();
 
 
 	return 0;

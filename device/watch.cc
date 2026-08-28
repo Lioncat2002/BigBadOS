@@ -28,4 +28,4 @@ void Watch::epilogue(){
     scheduler.Scheduler::resume();
 }
 
-Watch watch(100000);
+Watch watch(1000);

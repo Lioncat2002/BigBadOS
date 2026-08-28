@@ -16,8 +16,8 @@
 
 void Application::action()
 {
-	kout << "Helix OS 2.0.0 - Task 3" << endl;
-	/*kout << "Hello O_Stream!" << endl;
+	kout << "Helix OS 2.0.0" << endl;
+	kout << "Hello O_Stream!" << endl;
 	kout << "Number: " << 42 << endl;
 	kout << "Char test: " << 'A' << endl;
 
@@ -38,7 +38,7 @@ void Application::action()
 	kout << "pointer:      " << reinterpret_cast<void *>(1994473406541717165ul)
 	     << " -> 0x1badcafefee1dead" << endl;
 	kout << "smiley:       " << static_cast<char>(1) << endl;
-	kout.flush();*/
+	kout.flush();
 
 	int counter = 0;
 	while (true) {

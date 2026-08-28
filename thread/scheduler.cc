@@ -17,7 +17,7 @@ void Scheduler::ready(Entrant &that){
     ready_queue.enqueue(&that);
 }
 
-void Scheduler::schedule(){
+void Scheduler::resume(){
     Entrant *next = (Entrant*)ready_queue.dequeue();
     if(next){
         Entrant *current = (Entrant*)active();
@@ -48,7 +48,7 @@ void Scheduler::kill(Entrant &that){
     }
 }
 
-void Scheduler::resume() {
+void Scheduler::schedule() {
 	Entrant* next = (Entrant*)ready_queue.dequeue();
 	if (next) {
         
