@@ -4,6 +4,7 @@
 #include "syscall/guarded_scheduler.h"
 #include "user/appl.h"
 #include "user/loop.h"
+#include "guard/guard.h"
 
 static char app_stack[4096];
 Application app(&app_stack[4096]);
@@ -20,8 +21,8 @@ int main()
 
 	scheduler.ready(app);
 	scheduler.ready(loop1);
-	//scheduler.ready(loop2);
-
+	scheduler.ready(loop2);
+	guard.enter();
 	scheduler.schedule();
 
 

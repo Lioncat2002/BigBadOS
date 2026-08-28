@@ -20,7 +20,7 @@ Loop::Loop(char id, int pos_x, int pos_y)
 void Loop::action() {
   for (int i = 0; i < INT64_MAX; i++) {
     {
-      //Secure secure;
+      Secure secure;
       int x, y;
       kout.getpos(x, y);
       kout.setpos(pos_x, pos_y);

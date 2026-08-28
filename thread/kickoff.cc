@@ -15,9 +15,11 @@
 #include "kickoff.h"
 #include "coroutine.h"
 #include "../syscall/guarded_scheduler.h"
+#include "../guard/guard.h"
 /* Add your code here */ 
  
 void kickoff(void *dummy1, void *dummy2, void *dummy3, void *dummy4, void *dummy5, void *dummy6, Coroutine *object){
+    guard.leave();
     object->action();
     scheduler.exit();
 }
