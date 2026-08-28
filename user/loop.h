@@ -13,9 +13,9 @@
 #ifndef __loop_include__
 #define __loop_include__
 
-#include "../thread/entrant.h"
+#include "../syscall/thread.h"
 
-class Loop : public Entrant {
+class Loop : public Thread {
 private:
 	char stack[4096];
 	int pos_x, pos_y;

@@ -12,15 +12,15 @@
 #include "loop.h"
 #include <cstdint>
 #include "../guard/secure.h"
-#include "../thread/scheduler.h"
+#include "../syscall/guarded_scheduler.h"
 
 Loop::Loop(char id, int pos_x, int pos_y)
-    : Entrant(&stack[4096]), id(id), pos_x(pos_x), pos_y(pos_y) {}
+    : Thread(&stack[4096]), id(id), pos_x(pos_x), pos_y(pos_y) {}
 
 void Loop::action() {
   for (int i = 0; i < INT64_MAX; i++) {
     {
-      Secure secure;
+      //Secure secure;
       int x, y;
       kout.getpos(x, y);
       kout.setpos(pos_x, pos_y);

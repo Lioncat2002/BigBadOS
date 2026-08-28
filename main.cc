@@ -1,6 +1,6 @@
 #include "machine/cpu.h"
 #include "device/keyboard.h"
-#include "thread/scheduler.h"
+#include "syscall/guarded_scheduler.h"
 #include "user/appl.h"
 #include "user/loop.h"
 

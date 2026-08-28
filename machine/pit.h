@@ -15,13 +15,13 @@ class PIT {
 public:
 	PIT(const PIT &copy) = delete; // prevent copying
 	PIT& operator=(const PIT&) = delete; // prevent assignment
-/* Add your code here */ 
+	int us_interval;
 public:
 	PIT(int us) {
 		interval (us);
 	}
 	int interval() {
-/* Add your code here */ 
+		return us_interval;
 	}
 	void interval(int us);
 };

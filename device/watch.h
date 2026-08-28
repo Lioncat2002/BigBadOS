@@ -14,8 +14,8 @@
 
 /* INCLUDES */
 
-#include "guard/gate.h"
-#include "machine/pit.h"
+#include "../guard/gate.h"
+#include "../machine/pit.h"
 
 class Watch : public Gate, public PIT {
 public:

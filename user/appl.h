@@ -10,16 +10,16 @@
 
 #ifndef __application_include__
 #define __application_include__
-#include "../thread/entrant.h"
+#include "../syscall/thread.h"
 
-class Application:public Entrant
+class Application:public Thread
 {
 
 public:
 	Application (const Application &copy) = delete; // prevent copying
 	Application& operator=(const Application&) = delete; // prevent assignment
 
-	Application(void *tos):Entrant(tos){}
+	Application(void *tos):Thread(tos){}
 /* Add your code here */ 
  
 	void action ();

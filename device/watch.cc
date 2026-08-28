@@ -9,9 +9,21 @@
 /* process switch if necessary.                                              */
 /*****************************************************************************/
 
-/* Add your code here */ 
-/* Add your code here */ 
- 
-/* Add your code here */ 
-/* Add your code here */ 
+#include "watch.h"
+#include "../machine/plugbox.h"
+#include "../machine/pic.h"
+#include "../syscall/guarded_scheduler.h"
 
+void Watch::windup(){
+    plugbox.assign(Plugbox::timer, *this);
+    pic.allow(PIC::timer);
+}
+
+
+bool Watch::prologue(){
+    return true;
+}
+
+void Watch::epilogue(){
+    scheduler.resume();
+}

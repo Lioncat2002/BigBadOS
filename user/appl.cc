@@ -11,7 +11,7 @@
 #include "appl.h"
 #include "../device/cgastr.h"
 #include "../guard/secure.h"
-#include "../thread/scheduler.h"
+#include "../syscall/guarded_scheduler.h"
 
 
 void Application::action()
@@ -43,7 +43,7 @@ void Application::action()
 	int counter = 0;
 	while (true) {
 		{
-			Secure secure;
+			//Secure secure;
 			int x, y;
 			kout.getpos(x, y);
 			kout.setpos(0, 24);
