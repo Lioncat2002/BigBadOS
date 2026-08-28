@@ -10,7 +10,7 @@
 /* the toc struct for the first activation.                                  */
 /*****************************************************************************/
 
-#include "machine/toc.h"
+#include "toc.h"
 
 // TOC_SETTLE: Prepares a coroutine context for its first activation.
 void toc_settle(struct toc *regs, void *tos,
@@ -18,5 +18,10 @@ void toc_settle(struct toc *regs, void *tos,
 				void *),
 		void *object)
 {
-/* Add your code here */ 
+	void **stack = (void **)((unsigned long)tos & ~15UL );
+	stack[-1] = object;
+	stack[-2] = 0;
+	stack[-3] = (void *)kickoff;
+
+	regs->rsp = &stack[-3];
 }

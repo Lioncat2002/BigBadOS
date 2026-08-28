@@ -10,16 +10,16 @@
 
 #ifndef __application_include__
 #define __application_include__
+#include "../thread/entrant.h"
 
-class Application
- 
+class Application:public Entrant
 {
 
 public:
 	Application (const Application &copy) = delete; // prevent copying
 	Application& operator=(const Application&) = delete; // prevent assignment
 
-	Application(){}
+	Application(void *tos):Entrant(tos){}
 /* Add your code here */ 
  
 	void action ();

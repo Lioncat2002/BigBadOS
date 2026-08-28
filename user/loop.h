@@ -13,6 +13,16 @@
 #ifndef __loop_include__
 #define __loop_include__
 
-/* Add your code here */ 
+#include "../thread/entrant.h"
+
+class Loop : public Entrant {
+private:
+	char stack[4096];
+	int pos_x, pos_y;
+	char id;
+public:
+	Loop(char id, int pos_x, int pos_y);
+	void action();
+};
  
 #endif

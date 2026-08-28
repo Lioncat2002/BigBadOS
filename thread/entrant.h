@@ -11,16 +11,16 @@
 #ifndef __entrant_include__
 #define __entrant_include__
 
-/* Add your code here */ 
+#include "coroutine.h"
+#include "../object/chain.h"
 
-class Entrant
+class Entrant:public Coroutine, public Chain
 /* Add your code here */ 
 {
 public:
 	Entrant(const Entrant &copy) = delete; // prevent copying
 	Entrant& operator=(const Entrant&) = delete; // prevent assignment
-
-/* Add your code here */ 
+	Entrant(void* tos) : Coroutine(tos) {}
 };
 
 #endif

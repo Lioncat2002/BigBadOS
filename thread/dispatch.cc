@@ -12,4 +12,20 @@
 /* active() returns the life pointer.                                        */
 /*****************************************************************************/
 
-/* Add your code here */ 
+#include "dispatch.h"
+#include "coroutine.h"
+
+void Dispatcher::go(Coroutine &first){
+    life = &first;
+    first.go();
+}
+
+void Dispatcher::dispatch(Coroutine &next){
+    Coroutine *previous = life;
+    life = &next;
+    previous->resume(next);
+}
+
+Coroutine* Dispatcher::active() {
+	return life;
+}

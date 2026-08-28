@@ -17,12 +17,19 @@
 #ifndef __Coroutine_include__
 #define __Coroutine_include__
 
-#include "machine/toc.h"
+#include "../machine/toc.h"
 
 class Coroutine {
+private:
+	struct toc regs;
 public:
 	Coroutine(const Coroutine &copy) = delete; // prevent copying
 	Coroutine& operator=(const Coroutine&) = delete; // prevent assignment
+
+	Coroutine(void *tos);
+	virtual void action() = 0;
+	void go();
+	void resume(Coroutine &next);
 /* Add your code here */ 
 };
 

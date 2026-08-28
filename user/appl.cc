@@ -11,6 +11,7 @@
 #include "appl.h"
 #include "../device/cgastr.h"
 #include "../guard/secure.h"
+#include "../thread/scheduler.h"
 
 
 void Application::action()
@@ -51,7 +52,8 @@ void Application::action()
 			kout.setpos(x, y);
 		
 		}
-		for (volatile int i = 0; i < 2000000; i++)
-			;
+        scheduler.schedule();
+		//for (volatile int i = 0; i < 2000000; i++)
+		//	;
 	}
 }
