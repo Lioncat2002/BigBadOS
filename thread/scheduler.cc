@@ -49,12 +49,9 @@ void Scheduler::kill(Entrant &that){
 }
 
 void Scheduler::schedule() {
-	Entrant *next = (Entrant*)ready_queue.dequeue();
-    if(next){
-        Entrant *current = (Entrant*)active();
-        if(current){
-            ready_queue.enqueue(current);
-        }
-        dispatch(*next);
-    }
+	Entrant* next = (Entrant*)ready_queue.dequeue();
+	if (next) {
+        
+		go(*next);
+	}
 }
