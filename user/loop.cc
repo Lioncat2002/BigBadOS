@@ -15,7 +15,7 @@
 #include "../thread/scheduler.h"
 
 Loop::Loop(char id, int pos_x, int pos_y)
-    : Entrant(&stack), id(id), pos_x(pos_x), pos_y(pos_y) {}
+    : Entrant(&stack[4096]), id(id), pos_x(pos_x), pos_y(pos_y) {}
 
 void Loop::action() {
   for (int i = 0; i < INT64_MAX; i++) {

@@ -17,7 +17,7 @@ int main()
 
 	scheduler.ready(app);
 	scheduler.ready(loop1);
-	//scheduler.ready(loop2);
+	scheduler.ready(loop2);
 
 	scheduler.resume();
 
