@@ -22,7 +22,9 @@ void Keyboard::plugin(){
 }
 
 bool Keyboard::prologue(){
+        
     k = key_hit();
+
     if (k.valid()) {
 		if (k.ctrl() && k.alt() && k.scancode() == Key::scan::del) {
 			reboot();

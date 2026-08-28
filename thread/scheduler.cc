@@ -51,6 +51,7 @@ void Scheduler::kill(Entrant &that){
 void Scheduler::resume() {
 	Entrant* next = (Entrant*)ready_queue.dequeue();
 	if (next) {
+        
 		go(*next);
 	}
 }

@@ -36,4 +36,6 @@ public:
 	void epilogue();
 };
 
+extern Watch watch;
+
 #endif

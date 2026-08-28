@@ -1,3 +1,4 @@
+#include "device/watch.h"
 #include "machine/cpu.h"
 #include "device/keyboard.h"
 #include "syscall/guarded_scheduler.h"
@@ -13,6 +14,8 @@ Loop loop2('B', 40, 20);
 int main()
 {
 	keyboard.plugin();
+	watch.windup();
+
 	cpu.enable_int();
 
 	scheduler.ready(app);
