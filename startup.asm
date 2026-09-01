@@ -99,8 +99,8 @@ pagetable_end:  equ 0x200000
 	dd 0 ; bss_end_addr (gets ignored)
 	dd 0 ; entry_addr (gets ignored)
 	dd 0     ; mode_type = linear graphics mode
-	dd 320   ; width
-	dd 200   ; height
+	dd 640   ; width
+	dd 480   ; height
 	dd 32    ; depth
 
 ;
@@ -450,7 +450,9 @@ _ZdlPvm:            ; void operator delete(void*, unsigned long) for g++ 6.x
 	ret
 
 [SECTION .data]
+[GLOBAL MULTIBOOT_INFO]
 
+MULTIBOOT_INFO: dd 0
 ;
 ; Segment descriptors
 ;
@@ -513,9 +515,7 @@ idt_descr:
 [GLOBAL MULTIBOOT_CMDLINE]
 [GLOBAL MULTIBOOT_MODULES_COUNT]
 [GLOBAL MULTIBOOT_MODULES_ADDRESS]
-[GLOBAL MULTIBOOT_INFO]
 
-MULTIBOOT_INFO: resd 1
 MULTIBOOT_FLAGS:            resd 1
 MULTIBOOT_LOWER_MEM:        resd 1
 MULTIBOOT_UPPER_MEM:        resd 1

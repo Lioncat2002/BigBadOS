@@ -23,9 +23,12 @@ class CGA_Stream: public O_Stream
 private:
 	CGA_Screen screen;
 public:
-	CGA_Stream() = default;
+	CGA_Stream()=default;
 	CGA_Stream(CGA_Stream &copy) = delete; // prevent copying
 	CGA_Stream& operator=(const CGA_Stream&) = delete; // prevent assignment
+	void init(MultibootInfo *mbi){
+		screen.init(mbi);
+	}
     void flush() override;
     void setpos(int x, int y) { screen.setpos(x, y); }
     void getpos(int &x, int &y) { screen.getpos(x, y); }

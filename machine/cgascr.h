@@ -13,8 +13,9 @@
 /* I/O ports.                                                                */
 /*****************************************************************************/
 
+#include "../multiboot.h"
 #include "io_port.h"
-
+#include <stdint.h>
 class CGA_Screen {
 private:
   /* Add your code here */
@@ -23,6 +24,9 @@ private:
   int y;
   int width;
   int height;
+  uint32_t pitch;
+  uint8_t bpp;
+
   IO_Port index_port;
   IO_Port data_port;
 
@@ -30,13 +34,17 @@ public:
   CGA_Screen(const CGA_Screen &copy) = delete;        // prevent copying
   CGA_Screen &operator=(const CGA_Screen &) = delete; // prevent assignment
   CGA_Screen()
-      : video((unsigned char *)0xb8000), x(0), y(0), width(80), height(25),
+      : video(nullptr), x(0), y(0), width(0), height(0), pitch(0), bpp(0),
         index_port(0x3d4), data_port(0x3d5) {}
+  void init(MultibootInfo *mbi);
   void show(int x, int y, char c, unsigned char attrib);
   void setpos(int x, int y);
   void getpos(int &x, int &y);
   void print(char *text, int length, unsigned char attrib);
   void scroll();
+
+  void putpixel(int x, int y, uint32_t color);
+  void clear(uint32_t color);
 };
 
 extern CGA_Screen screen;
