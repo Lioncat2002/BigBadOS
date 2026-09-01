@@ -32,7 +32,12 @@ MULTIBOOT_MEMORY_INFO    equ   1<<1
 MULTIBOOT_HEADER_MAGIC   equ   0x1badb002
 
 ; Multiboot flags (ELF specific!)
-MULTIBOOT_HEADER_FLAGS   equ   MULTIBOOT_PAGE_ALIGN | MULTIBOOT_MEMORY_INFO
+MULTIBOOT_VIDEO_MODE equ 1 << 2
+
+MULTIBOOT_HEADER_FLAGS equ \
+    MULTIBOOT_PAGE_ALIGN | \
+    MULTIBOOT_MEMORY_INFO | \
+    MULTIBOOT_VIDEO_MODE
 MULTIBOOT_HEADER_CHKSUM  equ   -(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS)
 MULTIBOOT_EAX_MAGIC      equ   0x2badb002
 
@@ -93,10 +98,10 @@ pagetable_end:  equ 0x200000
 	dd 0 ; load_end_addr (gets ignored)
 	dd 0 ; bss_end_addr (gets ignored)
 	dd 0 ; entry_addr (gets ignored)
-	dd 0 ; mode_type (gets ignored)
-	dd 0 ; width (gets ignored)
-	dd 0 ; height (gets ignored)
-	dd 0 ; depth (gets ignored)
+	dd 0     ; mode_type = linear graphics mode
+	dd 320   ; width
+	dd 200   ; height
+	dd 32    ; depth
 
 ;
 ;  GRUB entry point
