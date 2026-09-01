@@ -4,15 +4,8 @@
 #include "device/keyboard.h"
 #include "multiboot.h"
 #include "syscall/guarded_scheduler.h"
-#include "user/appl.h"
-#include "user/loop.h"
+#include "user/app_loader.h"
 #include "guard/guard.h"
-
-static char app_stack[4096];
-Application app(&app_stack[4096]);
-
-Loop loop1('A',0,20);
-Loop loop2('B', 40, 20);
 
 void putpixel(MultibootInfo *mbi, int x, int y, uint32_t color)
 {
@@ -35,9 +28,8 @@ extern "C" int kmain(MultibootInfo *mbi)
 
 	cpu.enable_int();
 
-	scheduler.ready(app);
-	scheduler.ready(loop1);
-	scheduler.ready(loop2);
+	app_loader.start();
+
 	guard.enter();
 	scheduler.schedule();
 

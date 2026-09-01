@@ -16,7 +16,7 @@
 #include "../multiboot.h"
 #include "io_port.h"
 #include <stdint.h>
-class CGA_Screen {
+class FB_Screen {
 private:
   /* Add your code here */
   volatile unsigned char *video; // 0xB8000
@@ -31,9 +31,9 @@ private:
   IO_Port data_port;
 
 public:
-  CGA_Screen(const CGA_Screen &copy) = delete;        // prevent copying
-  CGA_Screen &operator=(const CGA_Screen &) = delete; // prevent assignment
-  CGA_Screen()
+  FB_Screen(const FB_Screen &copy) = delete;        // prevent copying
+  FB_Screen &operator=(const FB_Screen &) = delete; // prevent assignment
+  FB_Screen()
       : video(nullptr), x(0), y(0), width(0), height(0), pitch(0), bpp(0),
         index_port(0x3d4), data_port(0x3d5) {}
   void init(MultibootInfo *mbi);
@@ -47,6 +47,6 @@ public:
   void clear(uint32_t color);
 };
 
-extern CGA_Screen screen;
+extern FB_Screen screen;
 
 #endif

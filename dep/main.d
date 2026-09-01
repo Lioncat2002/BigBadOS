@@ -10,6 +10,5 @@ build/main.o: main.cc device/cgastr.h device/../object/o_stream.h \
  syscall/../thread/../object/chain.h syscall/../thread/scheduler.h \
  syscall/../thread/dispatch.h syscall/../thread/entrant.h \
  syscall/../thread/../object/queue.h syscall/../thread/../object/chain.h \
- user/appl.h user/../syscall/thread.h user/loop.h guard/guard.h \
- guard/locker.h guard/../device/cgastr.h guard/../machine/cpu.h \
- guard/gate.h guard/../object/queue.h
+ user/app_loader.h guard/guard.h guard/locker.h guard/../device/cgastr.h \
+ guard/../machine/cpu.h guard/gate.h guard/../object/queue.h

@@ -8,7 +8,7 @@
 /* The CGA_Stream class allows to print different data types as text strings */
 /* to a PC's CGA screen.                                                     */
 /* For attributes/colors and cursor positioning use the methods of class     */
-/* CGA_Screen.                                                               */
+/* FB_Screen.                                                               */
 /*****************************************************************************/
 
 #include "../device/cgastr.h"

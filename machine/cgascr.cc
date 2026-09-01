@@ -14,7 +14,7 @@
 #include "../multiboot.h"
 #include "font.h"
 
-void CGA_Screen::init(MultibootInfo *mbi) {
+void FB_Screen::init(MultibootInfo *mbi) {
   if (!(mbi->flags & (1 << 12))) {
     return;
   }
@@ -29,7 +29,7 @@ void CGA_Screen::init(MultibootInfo *mbi) {
   y = 0;
 }
 
-void CGA_Screen::putpixel(int x, int y, uint32_t color)
+void FB_Screen::putpixel(int x, int y, uint32_t color)
 {
     if (!video)
         return;
@@ -46,7 +46,7 @@ void CGA_Screen::putpixel(int x, int y, uint32_t color)
     *pixel = color;
 }
 
-void CGA_Screen::show(
+void FB_Screen::show(
     int x,
     int y,
     char c,
@@ -80,7 +80,7 @@ void CGA_Screen::show(
     }
 }
 
-void CGA_Screen::setpos(int x, int y) {
+void FB_Screen::setpos(int x, int y) {
   this->x = x;
   this->y = y;
 
@@ -95,12 +95,12 @@ void CGA_Screen::setpos(int x, int y) {
   data_port.outb((pos >> 8) & 0xff);
 }
 
-void CGA_Screen::getpos(int &x, int &y) {
+void FB_Screen::getpos(int &x, int &y) {
   x = this->x;
   y = this->y;
 }
 
-void CGA_Screen::print(char *text, int length, unsigned char attrib) {
+void FB_Screen::print(char *text, int length, unsigned char attrib) {
 
   for (int i = 0; i < length; i++) {
     char c = text[i];
@@ -127,7 +127,7 @@ void CGA_Screen::print(char *text, int length, unsigned char attrib) {
   setpos(x, y);
 }
 
-void CGA_Screen::scroll() {
+void FB_Screen::scroll() {
   int row = width * 2;
 
   for (int y = 1; y < height; y++) {
@@ -144,4 +144,4 @@ void CGA_Screen::scroll() {
   }
 }
 
-CGA_Screen screen;
+FB_Screen screen;

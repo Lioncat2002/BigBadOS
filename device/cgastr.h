@@ -8,7 +8,7 @@
 /* The CGA_Stream class allows to print different data types as text strings */
 /* to a PC's CGA screen.                                                     */
 /* For attributes/colors and cursor positioning use the methods of class     */
-/* CGA_Screen.                                                               */
+/* FB_Screen.                                                               */
 /*****************************************************************************/
 
 #ifndef __cgastr_include__
@@ -21,7 +21,7 @@ class CGA_Stream: public O_Stream
 /* Add your code here */ 
 {
 private:
-	CGA_Screen screen;
+	FB_Screen screen;
 public:
 	CGA_Stream()=default;
 	CGA_Stream(CGA_Stream &copy) = delete; // prevent copying
