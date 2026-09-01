@@ -62,7 +62,7 @@ pagetable_end:  equ 0x200000
 [GLOBAL _ZdlPvm]
 
 ; functions from the C parts of the system
-[EXTERN main]
+[EXTERN kmain]
 [EXTERN guardian]
 
 ; addresses provided by the compiler
@@ -110,6 +110,11 @@ pagetable_end:  equ 0x200000
 startup:
 	cld              ; GCC-compiled code expects the direction flag to be 0
 	cli              ; disable interrupts
+
+    ; GRUB:
+    ; EAX = 0x2BADB002
+    ; EBX = physical address of Multiboot info structure
+    mov [MULTIBOOT_INFO], ebx
 	lgdt   [gdt_80]  ; set new segment descriptors
 
 	; global data segment
@@ -234,7 +239,10 @@ clear_bss:
 	and rsp, 0xfffffffffffffff0 ; align stack to 16-byte boundary (some SSE instructions may trap otherwise)
 
 	call   _init   ; call constructors of global objects
-	call   main    ; call the OS kernel's C / C++ part
+	; Multiboot info pointer is a 32-bit physical address.
+	; Identity mapping means it is directly accessible.
+	mov    edi, [MULTIBOOT_INFO]
+	call   kmain    ; call the OS kernel's C / C++ part
 	call   _fini   ; call destructors
 	cli            ; Usually we should not get here.
 	hlt
@@ -505,7 +513,9 @@ idt_descr:
 [GLOBAL MULTIBOOT_CMDLINE]
 [GLOBAL MULTIBOOT_MODULES_COUNT]
 [GLOBAL MULTIBOOT_MODULES_ADDRESS]
+[GLOBAL MULTIBOOT_INFO]
 
+MULTIBOOT_INFO: resd 1
 MULTIBOOT_FLAGS:            resd 1
 MULTIBOOT_LOWER_MEM:        resd 1
 MULTIBOOT_UPPER_MEM:        resd 1

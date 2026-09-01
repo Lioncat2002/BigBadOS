@@ -1,6 +1,7 @@
 #include "device/watch.h"
 #include "machine/cpu.h"
 #include "device/keyboard.h"
+#include "multiboot.h"
 #include "syscall/guarded_scheduler.h"
 #include "user/appl.h"
 #include "user/loop.h"
@@ -12,7 +13,7 @@ Application app(&app_stack[4096]);
 Loop loop1('A',0,20);
 Loop loop2('B', 40, 20);
 
-int main()
+int kmain(MultibootInfo *mbi)
 {
 	keyboard.plugin();
 	watch.windup();
